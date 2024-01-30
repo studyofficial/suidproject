@@ -41,7 +41,6 @@ while requestnum < requests:
     pyautogui.click(76, 1056)
     pyautogui.click(65, 1032)
 
-
     # copy username from mail
     pyautogui.click(439, 251)
     pyautogui.moveTo(519, 783, 0.5)
@@ -49,6 +48,35 @@ while requestnum < requests:
 
     # copy
     pyautogui.click(530, 788)
+
+    # Если почта contractor доделать
+    try:
+        n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\contractor1.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        sleep(0.5)
+        n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\contractor2.PNG', confidence=0.95)
+        pyautogui.doubleClick(n, m)
+        pyautogui.rightClick()
+        n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\clear.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        x, y = pyautogui.locateCenterOnScreen(r'C:\soft\png\dot.PNG', confidence=0.95)
+        pyautogui.click(x, y)
+        pyautogui.drag(-7, 0, 0.3, button='left')
+        pyautogui.rightClick()
+        n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\clear.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        pyautogui.tripleClick(x, y)
+        pyautogui.rightClick()
+        sleep(0.5)
+        n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\copywin.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        pyautogui.position()
+        pyautogui.click(1825, 650)
+    except:
+        pass
+
+
+
     # open browser
     pyautogui.click(122, 1060)
     sleep(2)
@@ -82,6 +110,8 @@ while requestnum < requests:
 
     # Выбрать пользователя и нажать далее
     sleep(3)
+
+
 
     # Если пользователь не найден пробуем по УЗ
     try:
