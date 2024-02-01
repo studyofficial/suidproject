@@ -13,7 +13,6 @@ pyautogui.FAILSAFE = True
 # путь к файлам png
 username = getpass.getuser()
 path = r'C:\Users\Andy\PycharmProjects\clickersuid\png/'
-print(path)
 # номер запроса
 requestnum = 0
 
