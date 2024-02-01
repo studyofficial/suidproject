@@ -87,8 +87,6 @@ while requestnum < requests:
     except pyautogui.ImageNotFoundException:
         pass
 
-
-
     # open browser
     pyautogui.click(122, 1060)
     sleep(2)
@@ -104,11 +102,11 @@ while requestnum < requests:
     pyautogui.click(40, 462)
     # загрузка польз
     sleep(1)
-    # Название ресурса открыть Outlook
+    # название ресурса открыть Outlook
     pyautogui.click(76, 1056)
     pyautogui.click(65, 1032)
 
-    # Открыть почту скопировать название ресурса
+    # открыть почту скопировать название ресурса
     n, m = pyautogui.locateCenterOnScreen(path+'rolename.PNG', confidence=0.7)
     n += 5
     m += 65
@@ -127,9 +125,7 @@ while requestnum < requests:
     # Выбрать пользователя и нажать далее
     sleep(3)
 
-
-
-    # Если пользователь не найден пробуем по УЗ
+    # если пользователь не найден пробуем по УЗ
     try:
         n, m = pyautogui.locateCenterOnScreen(path+'nodata.PNG', confidence=0.95)
         # open outlook copy user account
@@ -166,6 +162,7 @@ while requestnum < requests:
         pyautogui.click(122, 1060)
     except:
         pass
+
     # ищем куда нажать галочку
     try:
         ax, ay = pyautogui.locateCenterOnScreen(path+'checkbox1.PNG', grayscale=True, confidence=0.9)
@@ -187,9 +184,7 @@ while requestnum < requests:
 
         continue
 
-
-
-    # for multiple roles
+    # multiple roles
     sleep(3)
     pyautogui.click(97, 454)
     pyautogui.click(498, 368)
@@ -247,11 +242,11 @@ while requestnum < requests:
     pyautogui.click(259, 268)
     sleep(1)
 
-    # проверка жизни Выбор срока действия
+    # проверка жизни выбор срока действия
     try:
         n, m = pyautogui.locateCenterOnScreen(path+'srokchoose.PNG', confidence=0.95)
     except pyautogui.ImageNotFoundException:
-        print("Роль номер -",requestnum,"не найдена");
+        print("Роль номер -",requestnum,"не найдена")
         # open outlook
         pyautogui.click(76, 1056)
         pyautogui.click(65, 1032)
@@ -262,9 +257,8 @@ while requestnum < requests:
 
         continue
 
+    # поиск крестика
 
-
-    # Сдвинуть от крестика
     try:
         sleep(1)
         across, bcross = pyautogui.locateCenterOnScreen(path+'cross.PNG', confidence=0.7, region=(0, 0, 1269, 430))
@@ -273,7 +267,7 @@ while requestnum < requests:
     except pyautogui.ImageNotFoundException:
         pass
 
-    # ищем 2023 2024 год или беск
+    # ищем 2023 2024 год
     try:
         sleep(1)
         x, y = pyautogui.locateCenterOnScreen(path+'date2023.PNG', grayscale=True, confidence=0.9,
