@@ -8,7 +8,7 @@ import cv2
 # Указание количества запросов
 
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = 1.2
 pyautogui.FAILSAFE = True
 
 requestnum = 0
@@ -27,6 +27,12 @@ except:
 while requestnum < requests:
     # Обнуляем значения
     n, m, x, y, across, bcross, ax, ay, bx, by, xset, yset, xoutlook, youtlook = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+    # Выводим время обработки запросов
+    reqleft = requests - requestnum
+
+    print("Осталось запросов -", reqleft, ". Это займет примерно ", reqleft*2, "мин.")
+
     requestnum += 1
     pyautogui.doubleClick(1917, 1055)
 
@@ -54,7 +60,6 @@ while requestnum < requests:
 
     # copy
     n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\copymail.PNG', confidence=0.95)
-    sleep(0.2)
     pyautogui.click(n, m)
 
     # Если почта contractor доделать!!!
@@ -105,11 +110,15 @@ while requestnum < requests:
     pyautogui.click(65, 1032)
 
     # Открыть почту скопировать название ресурса
-    sleep(1)
-    pyautogui.tripleClick(1030, 787)
-    pyautogui.rightClick()
-    pyautogui.click(1090, 797)
-    sleep(1)
+    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\rolename.PNG', confidence=0.7)
+    n += 5
+    m += 65
+    pyautogui.rightClick(n, m)
+
+    # copy
+    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\copymail.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
     # open browser
     pyautogui.click(122, 1060)
 
