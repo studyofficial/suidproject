@@ -366,5 +366,4 @@ while requestnum < requests:
     pyautogui.click(n, m)
 
     # Увеличить кол-во запросов для цикла
-
     print("Выполнен запрос № -", requestnum)
