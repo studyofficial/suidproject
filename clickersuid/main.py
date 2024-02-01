@@ -18,7 +18,7 @@ requestnum = 0
 try:
     x, y = pyautogui.locateCenterOnScreen(path+'sudir.PNG', confidence=0.95)
     pyautogui.click(x, y)
-except:
+except pyautogui.ImageNotFoundException:
     pass
 
 # Сycle
@@ -48,7 +48,7 @@ while requestnum < requests:
     try:
         xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook2.PNG', confidence=0.95)
         pyautogui.click(xoutlook, youtlook)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
     # copy username from mail
@@ -84,7 +84,7 @@ while requestnum < requests:
         pyautogui.click(n, m)
         pyautogui.position()
         pyautogui.click(1825, 650)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
 
@@ -270,12 +270,10 @@ while requestnum < requests:
         across, bcross = pyautogui.locateCenterOnScreen(path+'cross.PNG', confidence=0.7, region=(0, 0, 1269, 430))
         across += 50
         pyautogui.click(across, bcross)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
-
     # ищем 2023 2024 год или беск
-
     try:
         sleep(1)
         x, y = pyautogui.locateCenterOnScreen(path+'date2023.PNG', grayscale=True, confidence=0.9,
@@ -288,7 +286,7 @@ while requestnum < requests:
         sleep(1)
         pyautogui.rightClick(1637, 522)
         pyautogui.click(1580, 660)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
     try:
@@ -303,7 +301,7 @@ while requestnum < requests:
         sleep(1)
         pyautogui.rightClick(1637, 522)
         pyautogui.click(1580, 660)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
     try:
@@ -318,7 +316,7 @@ while requestnum < requests:
         sleep(1)
         pyautogui.rightClick(1637, 522)
         pyautogui.click(1580, 660)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
     try:
@@ -326,7 +324,7 @@ while requestnum < requests:
         pyautogui.locateCenterOnScreen(path+'inf.PNG', region=(250, 100, 1269, 350))
         pyautogui.click(1900, 368)
         pyautogui.click(491, 368)
-    except:
+    except pyautogui.ImageNotFoundException:
         pass
 
     # next
@@ -361,5 +359,4 @@ while requestnum < requests:
     n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
     pyautogui.click(n, m)
 
-    # Увеличить кол-во запросов для цикла
     print("Выполнен запрос № -", requestnum)
