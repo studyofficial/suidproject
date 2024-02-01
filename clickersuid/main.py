@@ -15,8 +15,8 @@ requestnum = 0
 
 # открыть СУДИР
 try:
-    # x, y = pyautogui.locateCenterOnScreen(r'C:\soft\png\sudir.PNG', confidence=0.95)
-    pyautogui.click(72,1056)
+    x, y = pyautogui.locateCenterOnScreen(r'C:\Users\Andy\PycharmProjects\clickersuid\png\sudir.PNG', confidence=0.95)
+    pyautogui.click(x, y)
 except:
     pass
 
