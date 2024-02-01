@@ -26,7 +26,7 @@ except:
 
 while requestnum < requests:
     # Обнуляем значения
-    n, m, x, y, a, b, ax, ay, bx, by = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    n, m, x, y, across, bcross, ax, ay, bx, by, xset, yset, xoutlook, youtlook = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     requestnum += 1
     pyautogui.doubleClick(1917, 1055)
 
@@ -38,18 +38,26 @@ while requestnum < requests:
     # ждем загрузки SUID и откр письмо
 
     # open outlook
-    pyautogui.click(76, 1056)
-    pyautogui.click(65, 1032)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(r'C:\soft\png\outlook.PNG', confidence=0.95)
+    pyautogui.click(xoutlook, youtlook)
+    try:
+        xoutlook, youtlook = pyautogui.locateCenterOnScreen(r'C:\soft\png\outlook2.PNG', confidence=0.95)
+        pyautogui.click(xoutlook, youtlook)
+    except:
+        pass
 
     # copy username from mail
-    pyautogui.click(439, 251)
-    pyautogui.moveTo(519, 783, 0.5)
+    xset, yset = pyautogui.locateCenterOnScreen(r'C:\soft\png\set.PNG', confidence=0.95)
+    xset += 70
+    pyautogui.moveTo(xset, yset)
     pyautogui.rightClick()
 
     # copy
-    pyautogui.click(530, 788)
+    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\copymail.PNG', confidence=0.95)
+    sleep(0.2)
+    pyautogui.click(n, m)
 
-    # Если почта contractor доделать
+    # Если почта contractor доделать!!!
     try:
         n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\contractor1.PNG', confidence=0.95)
         pyautogui.click(n, m)
@@ -251,9 +259,9 @@ while requestnum < requests:
     # Сдвинуть от крестика
     try:
         sleep(1)
-        a, b = pyautogui.locateCenterOnScreen(r'C:\soft\png\cross.PNG', confidence=0.7, region=(0, 0, 1269, 430))
-        a += 50
-        pyautogui.click(a, b)
+        across, bcross = pyautogui.locateCenterOnScreen(r'C:\soft\png\cross.PNG', confidence=0.7, region=(0, 0, 1269, 430))
+        across += 50
+        pyautogui.click(across, bcross)
     except:
         pass
 
