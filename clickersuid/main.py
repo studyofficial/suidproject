@@ -30,7 +30,7 @@ while requestnum < requests:
     # Выводим время обработки запросов
     reqleft = requests - requestnum
 
-    print("Осталось запросов -", reqleft, ". Это займет примерно ", reqleft*2, "мин.")
+    print("Осталось запросов -", reqleft, ". Это займет примерно ", reqleft, "мин.")
 
     requestnum += 1
     pyautogui.doubleClick(1917, 1055)
