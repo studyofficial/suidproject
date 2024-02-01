@@ -1,17 +1,15 @@
 from time import sleep
 
 import pyautogui
-import cv2
-import getpass
 
-# pyautogui.position() alt+shift+e по запуску строки для определения пикселя
+
 # Указание количества запросов
 
 requests = int(input("Количество запросов - "))
 pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
 # путь к файлам png
-username = getpass.getuser()
+
 path = r'C:\Users\Andy\PycharmProjects\clickersuid\png/'
 # номер запроса
 requestnum = 0
@@ -23,9 +21,7 @@ try:
 except:
     pass
 
-
-
-# Цикл
+# Сycle
 
 while requestnum < requests:
     # Обнуляем значения
