@@ -6,7 +6,7 @@ import pyautogui
 # Указание количества запросов
 
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 0.5
+pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = True
 # путь к файлам png
 
@@ -45,11 +45,9 @@ while requestnum < requests:
     # open outlook
     xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
     pyautogui.click(xoutlook, youtlook)
-    try:
-        xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook2.PNG', confidence=0.95)
-        pyautogui.click(xoutlook, youtlook)
-    except pyautogui.ImageNotFoundException:
-        pass
+    youtlook -= 30
+    pyautogui.click(xoutlook, youtlook)
+    sleep(0.5)
 
     # copy username from mail
     xset, yset = pyautogui.locateCenterOnScreen(path+'set.PNG', confidence=0.95)
@@ -63,29 +61,21 @@ while requestnum < requests:
 
     # Если почта contractor доделать!!!
     try:
-        n, m = pyautogui.locateCenterOnScreen(path+'contractor1.PNG', confidence=0.95)
+        n, m = pyautogui.locateCenterOnScreen(path + 'contractor1.PNG', confidence=0.95)
         pyautogui.click(n, m)
         sleep(0.5)
-        n, m = pyautogui.locateCenterOnScreen(path+'contractor2.PNG', confidence=0.95)
+        n, m = pyautogui.locateCenterOnScreen(path + 'namescheck.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        n, m = pyautogui.locateCenterOnScreen(path + 'whom.PNG', confidence=0.95)
+        n += 70
         pyautogui.doubleClick(n, m)
-        pyautogui.rightClick()
-        n, m = pyautogui.locateCenterOnScreen(path+'clear.PNG', confidence=0.95)
+        n, m = pyautogui.locateCenterOnScreen(path + 'gpnmailblue.PNG', confidence=0.95)
+        pyautogui.rightClick(n, m)
+        n += 10
+        m += 10
         pyautogui.click(n, m)
-        x, y = pyautogui.locateCenterOnScreen(path+'dot.PNG', confidence=0.95)
-        pyautogui.click(x, y)
-        pyautogui.drag(-7, 0, 0.3, button='left')
-        pyautogui.rightClick()
-        n, m = pyautogui.locateCenterOnScreen(path+'clear.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        pyautogui.tripleClick(x, y)
-        pyautogui.rightClick()
-        sleep(0.5)
-        n, m = pyautogui.locateCenterOnScreen(path+'copywin.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        pyautogui.position()
-        pyautogui.click(1825, 650)
     except pyautogui.ImageNotFoundException:
-        pass
+            pass
 
     # open browser
     pyautogui.click(122, 1060)
@@ -103,13 +93,18 @@ while requestnum < requests:
     # загрузка польз
     sleep(1)
     # название ресурса открыть Outlook
-    pyautogui.click(76, 1056)
-    pyautogui.click(65, 1032)
+    # open outlook
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
+    pyautogui.click(xoutlook, youtlook)
+    youtlook -= 30
+    pyautogui.click(xoutlook, youtlook)
+    sleep(0.5)
 
     # открыть почту скопировать название ресурса
     n, m = pyautogui.locateCenterOnScreen(path+'rolename.PNG', confidence=0.7)
-    n += 5
-    m += 65
+    m += 160
+    n += 50
+    pyautogui.tripleClick(n, m)
     pyautogui.rightClick(n, m)
 
     # copy
@@ -151,13 +146,22 @@ while requestnum < requests:
         sleep(1)
 
         # open outlook
-        pyautogui.click(76, 1056)
-        pyautogui.click(65, 1032)
+        xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.95)
+        pyautogui.click(xoutlook, youtlook)
+        youtlook -= 30
+        pyautogui.click(xoutlook, youtlook)
+        sleep(0.5)
+        # copy rolename
+        n, m = pyautogui.locateCenterOnScreen(path + 'rolename.PNG', confidence=0.7)
+        m += 160
+        n += 50
+        pyautogui.tripleClick(n, m)
+        pyautogui.rightClick(n, m)
 
-        pyautogui.tripleClick(1030, 787)
-        pyautogui.rightClick()
-        pyautogui.click(1090, 797)
-        sleep(1)
+        # copy
+        n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+
         # open browser
         pyautogui.click(122, 1060)
     except:
@@ -346,8 +350,11 @@ while requestnum < requests:
     # Переместить запрос в обработанные
 
     # open outlook
-    pyautogui.click(76, 1056)
-    pyautogui.click(65, 1032)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
+    pyautogui.click(xoutlook, youtlook)
+    youtlook -= 30
+    pyautogui.click(xoutlook, youtlook)
+    sleep(0.5)
     n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
     pyautogui.click(n, m)
     n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
