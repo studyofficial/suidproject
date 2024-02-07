@@ -10,7 +10,7 @@ pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = True
 # путь к файлам png
 
-path = r'C:\Users\Andy\PycharmProjects\clickersuid\png/'
+path = r'C:\Users\Andrew\PycharmProjects\suidproject\png/'
 # номер запроса
 requestnum = 0
 
@@ -118,7 +118,7 @@ while requestnum < requests:
     n, m = pyautogui.locateCenterOnScreen(path+'userchoose.PNG', confidence=0.95)
 
     # Выбрать пользователя и нажать далее
-    sleep(3)
+    sleep(4)
 
     # если пользователь не найден пробуем по УЗ
     try:
@@ -236,6 +236,7 @@ while requestnum < requests:
     n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
 
     # choose выбираем
+    sleep(2)
     pyautogui.click(87, 629)
     sleep(1)
     # next далее
