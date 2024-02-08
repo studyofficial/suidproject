@@ -6,11 +6,11 @@ import pyautogui
 # Указание количества запросов
 
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = 0.4
 pyautogui.FAILSAFE = True
 # путь к файлам png
 
-path = r'C:\Users\Andrew\PycharmProjects\suidproject\png/'
+path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 # номер запроса
 requestnum = 0
 
@@ -188,12 +188,16 @@ while requestnum < requests:
 
         continue
 
-    # multiple roles
-    sleep(3)
-    pyautogui.click(97, 454)
-    pyautogui.click(498, 368)
-    sleep(1)
-    pyautogui.click(1003, 372)
+    # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
+    sleep(5)
+    try:
+        n, m = pyautogui.locateCenterOnScreen(path + 'circlecheckbox.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        bx, by = pyautogui.locateCenterOnScreen(path + 'next.PNG', grayscale=True, confidence=0.9)
+        pyautogui.click(bx, by)
+        sleep(2)
+    except:
+        pass
 
     # проверка жизни справки
     n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
@@ -221,9 +225,10 @@ while requestnum < requests:
 
     # выбор типа ресурса
     pyautogui.click(1385, 506)
-    pyautogui.moveTo(1351, 523, 0.2)
+    pyautogui.moveTo(1351, 523, 0.1)
     pyautogui.scroll(2000)
     pyautogui.scroll(-300)
+    sleep(1)
     n, m = pyautogui.locateCenterOnScreen(path+'infsys.PNG', grayscale=True, confidence=0.9)
 
     pyautogui.click(n, m)
