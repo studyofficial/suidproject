@@ -6,7 +6,7 @@ import pyautogui
 # Указание количества запросов
 
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 0.4
+pyautogui.PAUSE = 0.9
 pyautogui.FAILSAFE = True
 # путь к файлам png
 
@@ -43,7 +43,7 @@ while requestnum < requests:
     # ждем загрузки SUID и откр письмо
 
     # open outlook
-    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.85)
     pyautogui.click(xoutlook, youtlook)
     youtlook -= 30
     pyautogui.click(xoutlook, youtlook)
@@ -94,7 +94,7 @@ while requestnum < requests:
     sleep(1)
     # название ресурса открыть Outlook
     # open outlook
-    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.85)
     pyautogui.click(xoutlook, youtlook)
     youtlook -= 30
     pyautogui.click(xoutlook, youtlook)
@@ -146,7 +146,7 @@ while requestnum < requests:
         sleep(1)
 
         # open outlook
-        xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.95)
+        xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.85)
         pyautogui.click(xoutlook, youtlook)
         youtlook -= 30
         pyautogui.click(xoutlook, youtlook)
@@ -356,7 +356,7 @@ while requestnum < requests:
     # Переместить запрос в обработанные
 
     # open outlook
-    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.95)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path+'outlook.PNG', confidence=0.85)
     pyautogui.click(xoutlook, youtlook)
     youtlook -= 30
     pyautogui.click(xoutlook, youtlook)
