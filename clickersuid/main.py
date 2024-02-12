@@ -60,6 +60,13 @@ def copymail():
     n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
     pyautogui.click(n, m)
 
+def mailmoveto():
+    n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+    n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
+
 def copyusername():
     xset, yset = pyautogui.locateCenterOnScreen(path + 'set.PNG', confidence=0.95)
     xset += 70
@@ -376,9 +383,6 @@ while requestnum < requests:
 
     # open outlook
     open_outlook()
-    n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
-    pyautogui.click(n, m)
-    n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
-    pyautogui.click(n, m)
+    mailmoveto()
 
     print("Выполнен запрос № -", requestnum)
