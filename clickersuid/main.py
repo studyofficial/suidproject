@@ -4,7 +4,7 @@ import pyautogui
 
 # Указание количества запросов
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = 0.8
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
