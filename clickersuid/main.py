@@ -21,7 +21,7 @@ def find_img(pngname):
     sleep(0.5)
     r = None
     count = 20
-    while r is None
+    while r is None:
         count -= 1
         r = pyautogui.locateCenterOnScreen(path + pngname, confidence=0.9)
         print(count)
