@@ -1,15 +1,12 @@
 from time import sleep
 
 import pyautogui
-import cv2
 
-
-# pyautogui.position() alt+shift+e по запуску строки для определения пикселя
 # Указание количества запросов
-
 requests = int(input("Количество запросов - "))
 pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
+path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 
 requestnum = 0
 
@@ -17,11 +14,7 @@ requestnum = 0
 
 while requestnum < requests:
     # Обнуляем значения
-    n, m, x, y, a, b, ax, ay, bx, by, cx, cy = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-
-
-
-    pyautogui.doubleClick(1917, 1055)
+    n, m, x, y, across, bcross, ax, ay, bx, by, xset, yset, xoutlook, youtlook = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
     # open browser
     pyautogui.click(122, 1060)
@@ -31,16 +24,21 @@ while requestnum < requests:
     # ждем загрузки SUID и откр письмо
 
     # open outlook
-    pyautogui.click(76, 1056)
-    pyautogui.click(65, 1032)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.85)
+    pyautogui.click(xoutlook, youtlook)
+    youtlook -= 30
+    pyautogui.click(xoutlook, youtlook)
+    sleep(0.5)
 
     # copy username from mail
-    pyautogui.click(439, 251)
-    pyautogui.moveTo(519, 783, 0.5)
+    xset, yset = pyautogui.locateCenterOnScreen(path + 'delete.PNG', confidence=0.95)
+    xset += 90
+    pyautogui.moveTo(xset, yset)
     pyautogui.rightClick()
-    sleep(1)
     # copy
-    pyautogui.click(530, 788)
+    n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
     # open browser
     pyautogui.click(122, 1060)
     sleep(8)
@@ -75,15 +73,15 @@ while requestnum < requests:
     pyautogui.click(122, 1060)
 
     # choose ax ay
-    ax, ay = pyautogui.locateCenterOnScreen(r'C:\soft\png\checkbox1.PNG', grayscale=True, confidence=0.9)
+    ax, ay = pyautogui.locateCenterOnScreen(path+'checkbox1.PNG', grayscale=True, confidence=0.9)
     pyautogui.click(ax, ay)
     # next bx by
-    bx, by = pyautogui.locateCenterOnScreen(r'C:\soft\png\next.PNG', grayscale=True, confidence=0.9)
+    bx, by = pyautogui.locateCenterOnScreen(path+'next.PNG', grayscale=True, confidence=0.9)
     pyautogui.click(bx, by)
 
 
     # проверка жизни
-    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\ident.PNG', grayscale=True, confidence=0.9)
+    n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
     # конец проверки
 
     # Выбор инф ресурса
@@ -99,13 +97,13 @@ while requestnum < requests:
     sleep(4)
 
     pyautogui.position()
-    cx, cy = pyautogui.locateCenterOnScreen(r'C:\soft\png\checkbox2.PNG', confidence=0.99)
+    cx, cy = pyautogui.locateCenterOnScreen(path+'checkbox2.PNG', confidence=0.99)
     pyautogui.click(cx, cy)
     # ждем загрузки ресурса
     sleep(3)
 
     # проверка жизни
-    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\ident.PNG', grayscale=True, confidence=0.9)
+    n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
     # конец проверки
 
     # next далее
@@ -114,13 +112,13 @@ while requestnum < requests:
     # несколько доступов
     try:
         sleep(1)
-        ax, ay = pyautogui.locateCenterOnScreen(r'C:\soft\png\checkbox2.PNG', grayscale=True, confidence=0.9)
+        ax, ay = pyautogui.locateCenterOnScreen(path+'checkbox2.PNG', grayscale=True, confidence=0.9)
         pyautogui.click(ax, ay)
     except:
         pass
 
     # проверка жизни
-    n, m = pyautogui.locateCenterOnScreen(r'C:\soft\png\ident.PNG', grayscale=True, confidence=0.9)
+    n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
     # конец проверки
 
     # next далее
@@ -146,12 +144,17 @@ while requestnum < requests:
     # Переместить запрос в обработанные
 
     # open outlook
-    pyautogui.click(76, 1056)
-    pyautogui.click(65, 1032)
+    xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.85)
+    pyautogui.click(xoutlook, youtlook)
+    youtlook -= 30
+    pyautogui.click(xoutlook, youtlook)
+    sleep(0.5)
 
     # drag mail
-    pyautogui.moveTo(404, 253)
-    pyautogui.dragTo(250, 249, 0.5, button='left')
+    n, m = pyautogui.locateCenterOnScreen(path + 'moveto.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+    n, m = pyautogui.locateCenterOnScreen(path + 'donewithdraw.PNG', confidence=0.95)
+    pyautogui.click(n, m)
 
     # Увеличить кол-во запросов для цикла
     requestnum += 1
