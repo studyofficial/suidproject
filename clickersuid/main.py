@@ -2,14 +2,12 @@ from time import sleep
 
 import pyautogui
 
-
 # Указание количества запросов
-
 requests = int(input("Количество запросов - "))
 pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = True
-# путь к файлам png
 
+# путь к файлам png
 path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 # номер запроса
 requestnum = 0
@@ -79,6 +77,10 @@ def copyrolename():
     n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
     pyautogui.click(n, m)
 
+def request_suid():
+    n, m = pyautogui.locateCenterOnScreen(path + 'requestsuid.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
 open_sudir()
 
 while requestnum < requests:
@@ -120,8 +122,8 @@ while requestnum < requests:
 
     # open browser
     pyautogui.click(122, 1060)
-    sleep(2)
-    pyautogui.doubleClick(182, 308)
+    sleep(1)
+    request_suid()
     # Ждем загр стр запроса
     sleep(6)
     pyautogui.click(207, 435)
@@ -137,8 +139,7 @@ while requestnum < requests:
     open_outlook()
     copyrolename()
 
-    # open browser
-    pyautogui.click(122, 1060)
+    open_browser()
 
     # проверка жизни Выбор пользователей
     n, m = pyautogui.locateCenterOnScreen(path+'userchoose.PNG', confidence=0.95)
@@ -171,7 +172,6 @@ while requestnum < requests:
         pyautogui.click(x, y)
         sleep(1)
 
-        # open outlook
         open_outlook()
         # copy rolename
         n, m = pyautogui.locateCenterOnScreen(path + 'rolename.PNG', confidence=0.7)
