@@ -16,6 +16,7 @@ requestnum = 0
 
 pngname = "Name"
 
+
 def find_img(pngname):
     # Ожидаем появление элемента
     sleep(0.5)
@@ -42,8 +43,13 @@ def open_outlook():
     sleep(0.2)
     print('Outlook открыт')
 
-def
+def open_browser():
+    x, y = pyautogui.locateCenterOnScreen(path + 'yndx.PNG', confidence=0.8)
+    pyautogui.click(x, y)
 
+def open_suid():
+    x, y = pyautogui.locateCenterOnScreen(path + 'suid.PNG', confidence=0.8)
+    pyautogui.click(x, y)
 
 # открыть СУДИР
 try:
@@ -67,13 +73,11 @@ while requestnum < requests:
     pyautogui.doubleClick(1917, 1055)
 
     # open browser
-    pyautogui.click(122, 1060)
+    open_browser()
     # open suid
-    pyautogui.click(44, 85)
+    open_suid()
 
     # ждем загрузки SUID и откр письмо
-
-    # open outlook
     open_outlook()
 
     # copy username from mail
