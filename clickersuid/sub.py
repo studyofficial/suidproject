@@ -61,7 +61,7 @@ def request_suid():
     pyautogui.click(n, m)
 
 
-
+open_sudir()
 
 
 # Цикл
@@ -80,14 +80,14 @@ while requestnum < requests:
     open_browser()
     sleep(5)
     request_suid()
-
+    sleep(3)
     pyautogui.click(554, 311)
     sleep(3)
 
 
     pyautogui.click(207, 455)
     # paste
-    sleep(1)
+    sleep(2)
     pyautogui.rightClick(207, 455)
     pyautogui.click(239, 605)
     pyautogui.click(40, 482)
@@ -119,7 +119,7 @@ while requestnum < requests:
     # конец проверки
 
     # Выбор инф ресурса
-    sleep(2)
+    sleep(3)
     # Вставить имя ресурса
     pyautogui.rightClick(339, 456)
     pyautogui.click(371, 605)
