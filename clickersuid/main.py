@@ -39,7 +39,10 @@ def open_outlook():
     pyautogui.click(xoutlook, youtlook)
     youtlook -= 30
     pyautogui.click(xoutlook, youtlook)
-    sleep(0.5)
+    sleep(0.2)
+    print('Outlook открыт')
+
+def
 
 
 # открыть СУДИР
