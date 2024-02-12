@@ -51,14 +51,35 @@ def open_suid():
     x, y = pyautogui.locateCenterOnScreen(path + 'suid.PNG', confidence=0.8)
     pyautogui.click(x, y)
 
-# открыть СУДИР
-try:
-    x, y = pyautogui.locateCenterOnScreen(path+'sudir.PNG', confidence=0.95)
-    pyautogui.click(x, y)
-except pyautogui.ImageNotFoundException:
-    pass
+def open_sudir():
+    try:
+        x, y = pyautogui.locateCenterOnScreen(path + 'sudir.PNG', confidence=0.95)
+        pyautogui.click(x, y)
+    except pyautogui.ImageNotFoundException:
+        pass
 
-# Сycle
+def copymail():
+    n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
+def copyusername():
+    xset, yset = pyautogui.locateCenterOnScreen(path + 'set.PNG', confidence=0.95)
+    xset += 70
+    pyautogui.moveTo(xset, yset)
+    pyautogui.rightClick()
+    n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
+def copyrolename():
+    n, m = pyautogui.locateCenterOnScreen(path + 'rolename.PNG', confidence=0.7)
+    m += 160
+    n += 50
+    pyautogui.tripleClick(n, m)
+    pyautogui.rightClick(n, m)
+    n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
+    pyautogui.click(n, m)
+
+open_sudir()
 
 while requestnum < requests:
     # Обнуляем значения
@@ -70,25 +91,14 @@ while requestnum < requests:
     print("Осталось запросов -", reqleft, ". Это займет примерно ", reqleft, "мин.")
 
     requestnum += 1
-    pyautogui.doubleClick(1917, 1055)
 
-    # open browser
     open_browser()
-    # open suid
     open_suid()
-
-    # ждем загрузки SUID и откр письмо
     open_outlook()
 
     # copy username from mail
-    xset, yset = pyautogui.locateCenterOnScreen(path+'set.PNG', confidence=0.95)
-    xset += 70
-    pyautogui.moveTo(xset, yset)
-    pyautogui.rightClick()
+    copyusername()
 
-    # copy
-    n, m = pyautogui.locateCenterOnScreen(path+'copymail.PNG', confidence=0.95)
-    pyautogui.click(n, m)
 
     # Если почта contractor доделать!!!
     try:
@@ -124,19 +134,8 @@ while requestnum < requests:
     # загрузка польз
     sleep(1)
     # название ресурса открыть Outlook
-    # open outlook
     open_outlook()
-
-    # открыть почту скопировать название ресурса
-    n, m = pyautogui.locateCenterOnScreen(path+'rolename.PNG', confidence=0.7)
-    m += 160
-    n += 50
-    pyautogui.tripleClick(n, m)
-    pyautogui.rightClick(n, m)
-
-    # copy
-    n, m = pyautogui.locateCenterOnScreen(path+'copymail.PNG', confidence=0.95)
-    pyautogui.click(n, m)
+    copyrolename()
 
     # open browser
     pyautogui.click(122, 1060)
@@ -363,8 +362,7 @@ while requestnum < requests:
     pyautogui.click(646, 302)
 
     # open browser
-
-    pyautogui.click(122, 1060)
+    open_browser()
     # paste some words
     pyautogui.rightClick(334, 538)
     pyautogui.click(369, 682)
@@ -372,7 +370,7 @@ while requestnum < requests:
     # проверка жизни Обоснование
     n, m = pyautogui.locateCenterOnScreen(path+'obosnovanie.PNG', confidence=0.95)
 
-    # Завершить процесс для прода - нажать кнопку отправить запрос
+    # нажать кнопку отправить запрос
     pyautogui.click(578, 371)
     # Переместить запрос в обработанные
 
