@@ -39,7 +39,6 @@ def open_outlook():
     youtlook -= 30
     pyautogui.click(xoutlook, youtlook)
     sleep(0.2)
-    print('Outlook открыт')
 
 def open_browser():
     x, y = pyautogui.locateCenterOnScreen(path + 'yndx.PNG', confidence=0.8)
