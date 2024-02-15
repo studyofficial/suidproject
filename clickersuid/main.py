@@ -4,7 +4,7 @@ import pyautogui
 
 # Указание количества запросов
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 0.4
+pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
@@ -243,7 +243,7 @@ while requestnum < requests:
 
     # если пользователь не найден пробуем по УЗ
     try:
-        sleep(2)
+        sleep(1)
         x, y = pyautogui.locateCenterOnScreen(path + 'nodata.PNG', confidence=0.95)
 
         open_outlook()
@@ -302,7 +302,7 @@ while requestnum < requests:
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
     try:
-        sleep(2)
+        sleep(1.5)
         n, m = pyautogui.locateCenterOnScreen(path + 'circlecheckbox.PNG', confidence=0.95)
         pyautogui.click(n, m)
         n, m = pyautogui.locateCenterOnScreen(path + 'next.PNG', confidence=0.95)
@@ -365,6 +365,7 @@ while requestnum < requests:
 
     # проверка жизни выбор срока действия
     try:
+        sleep(1)
         n, m = pyautogui.locateCenterOnScreen(path+'srokchoose.PNG', confidence=0.95)
     except pyautogui.ImageNotFoundException:
         print("Роль номер -",requestnum,"не найдена")
@@ -435,7 +436,10 @@ while requestnum < requests:
     n, m = pyautogui.locateCenterOnScreen(path+'obosnovanie.PNG', confidence=0.95)
 
     # нажать кнопку отправить запрос
-    pyautogui.click(578, 371)
+    pngname = 'end'
+    find_click_exact(end)
+    pngname = 'end2'
+    find_click_exact(end)
     # Переместить запрос в обработанные
 
     # open outlook
