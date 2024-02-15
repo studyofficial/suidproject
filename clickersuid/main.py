@@ -1,6 +1,6 @@
 from time import sleep
 
-import pyautogui
+import pyautogui, sys
 
 # Указание количества запросов
 requests = int(input("Количество запросов - "))
@@ -27,6 +27,7 @@ def find_img(pngname):
             pass
         if count == 0:
             print(pngname + 'не найден')
+            sys.exit()
             break
         else:
             if r != None:
@@ -47,6 +48,7 @@ def find_click(pngname):
             pass
         if count == 0:
             print(pngname + 'не найден')
+            sys.exit()
             break
         else:
             if r != None:
@@ -69,6 +71,7 @@ def find_click_kind(pngname):
             pass
         if count == 0:
             print(pngname + 'не найден')
+            sys.exit()
             break
         else:
             if r != None:
@@ -339,10 +342,14 @@ while requestnum < requests:
     # выбор типа ресурса
     pngname = 'typeres'
     find_click_exact(pngname)
-    pngname = 'scroll'
-    find_click(pngname)
-    pyautogui.scroll(2000)
-    pyautogui.scroll(-300)
+    try:
+        n, m = pyautogui.locateCenterOnScreen(path+'scroll.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        pyautogui.scroll(2000)
+        pyautogui.scroll(-300)
+    except:
+        pass
+
     pngname = 'infsys'
     find_click_exact(pngname)
 
@@ -437,9 +444,10 @@ while requestnum < requests:
 
     # нажать кнопку отправить запрос
     pngname = 'end'
-    find_click_exact(end)
+    find_click_exact(pngname)
+
     pngname = 'end2'
-    find_click_exact(end)
+    find_click_exact(pngname)
     # Переместить запрос в обработанные
 
     # open outlook
