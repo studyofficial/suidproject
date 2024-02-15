@@ -16,22 +16,88 @@ pngname = "Name"
 
 
 def find_img(pngname):
-    # Ожидаем появление элемента
     sleep(0.5)
     r = None
-    count = 20
+    count = 200
     while r is None:
         count -= 1
-        r = pyautogui.locateCenterOnScreen(path + pngname, confidence=0.9)
-        print(count)
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+        except pyautogui.ImageNotFoundException:
+            pass
         if count == 0:
             print(pngname + 'не найден')
             break
         else:
             if r != None:
-                print(pngname + 'найден')
+                pyautogui.click(r)
                 return r
-            else: continue
+            else:
+                continue
+
+def find_click(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.click(r)
+                return r
+            else:
+                continue
+
+def find_rightclick(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.8)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.rightClick(r)
+                return r
+            else:
+                continue
+
+def find_tripleclick_rightclick(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.6)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.tripleClick(r)
+                pyautogui.rightClick(r)
+                return r
+            else:
+                continue
 
 def open_outlook():
     xoutlook, youtlook = pyautogui.locateCenterOnScreen(path + 'outlook.PNG', confidence=0.85)
@@ -89,7 +155,11 @@ def request_suid():
 
 open_sudir()
 
+
+
+
 while requestnum < requests:
+
     # Обнуляем значения
     n, m, x, y, across, bcross, ax, ay, bx, by, xset, yset, xoutlook, youtlook = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
@@ -107,40 +177,19 @@ while requestnum < requests:
     # copy username from mail
     copyusername()
 
-
-    # Если почта contractor доделать!!!
-    try:
-        n, m = pyautogui.locateCenterOnScreen(path + 'contractor1.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        sleep(0.5)
-        n, m = pyautogui.locateCenterOnScreen(path + 'namescheck.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        n, m = pyautogui.locateCenterOnScreen(path + 'whom.PNG', confidence=0.95)
-        n += 70
-        pyautogui.doubleClick(n, m)
-        n, m = pyautogui.locateCenterOnScreen(path + 'gpnmailblue.PNG', confidence=0.95)
-        pyautogui.rightClick(n, m)
-        n += 10
-        m += 10
-        pyautogui.click(n, m)
-    except pyautogui.ImageNotFoundException:
-            pass
-
     # open browser
-    pyautogui.click(122, 1060)
-    sleep(1)
-    request_suid()
+    open_browser()
+    #opensuid
+    open_suid()
+    pngname = 'requestsuid'
+    find_click(pngname)
     # Ждем загр стр запроса
-    sleep(6)
-    pyautogui.click(207, 435)
-
-    # paste
-    sleep(1)
-    pyautogui.rightClick(207, 435)
-    pyautogui.click(239, 575)
-    pyautogui.click(40, 462)
-    # загрузка польз
-    sleep(1)
+    pngname = 'emptyslot'
+    find_rightclick(pngname)
+    pngname = 'paste'
+    find_click(pngname)
+    pngname = 'search'
+    find_click(pngname)
     # название ресурса открыть Outlook
     open_outlook()
     copyrolename()
@@ -148,35 +197,35 @@ while requestnum < requests:
     open_browser()
 
     # проверка жизни Выбор пользователей
-    n, m = pyautogui.locateCenterOnScreen(path+'userchoose.PNG', confidence=0.95)
+    pngname = 'userchoose'
+    find_click(pngname)
 
     # Выбрать пользователя и нажать далее
-    sleep(4)
+
 
     # если пользователь не найден пробуем по УЗ
     try:
-        n, m = pyautogui.locateCenterOnScreen(path+'nodata.PNG', confidence=0.95)
+        pngname = 'nodata'
+        find_img(pngname)
         # open outlook copy user account
         open_outlook()
-        sleep(1)
-        pyautogui.click(65, 1032)
+
         x, y = pyautogui.locateCenterOnScreen(path+'useraccount.PNG', confidence=0.95)
         y += 60
         pyautogui.tripleClick(x, y)
         pyautogui.rightClick()
-        x, y = pyautogui.locateCenterOnScreen(path+'copymail.PNG', confidence=0.95)
-        pyautogui.click(x, y)
+        pngname = 'copymail'
+        find_click(pngname)
         # open browser
-        pyautogui.click(122, 1060)
-        sleep(1)
-        pyautogui.tripleClick(207, 435)
+        open_browser()
+        pngname = 'emptyslot'
+        find_tripleclick_rightclick(pngname)
 
-        pyautogui.rightClick(207, 435)
-        x, y = pyautogui.locateCenterOnScreen(path+'paste.PNG', confidence=0.95)
-        pyautogui.click(x, y)
-        x, y = pyautogui.locateCenterOnScreen(path+'search.PNG', confidence=0.95)
-        pyautogui.click(x, y)
-        sleep(1)
+        pngname = 'paste'
+        find_click(pngname)
+
+        pngname = 'search'
+        find_click(pngname)
 
         open_outlook()
         # copy rolename
@@ -187,11 +236,10 @@ while requestnum < requests:
         pyautogui.rightClick(n, m)
 
         # copy
-        n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
-        pyautogui.click(n, m)
+        pngname = 'copymail'
+        find_click(pngname)
 
-        # open browser
-        pyautogui.click(122, 1060)
+        open_browser()
     except:
         pass
 
