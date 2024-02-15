@@ -164,7 +164,7 @@ def open_sudir():
         pass
 
 
-def mailmoveto():
+def mailmovetodone():
     n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
     pyautogui.click(n, m)
     n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
@@ -302,11 +302,11 @@ while requestnum < requests:
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
     try:
-        pngname = 'circlecheckbox'
-        find_click(pngname)
-
-        pngname = 'next'
-        find_click_exact(pngname)
+        sleep(2)
+        n, m = pyautogui.locateCenterOnScreen(path + 'circlecheckbox.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        n, m = pyautogui.locateCenterOnScreen(path + 'next.PNG', confidence=0.95)
+        pyautogui.click(n, m)
     except:
         pass
 
@@ -390,6 +390,12 @@ while requestnum < requests:
     except pyautogui.ImageNotFoundException:
         pass
 
+    try:
+        pyautogui.locateCenterOnScreen(path+'inf2.PNG', region=(250, 100, 1269, 350))
+        pyautogui.click(1900, 368)
+    except pyautogui.ImageNotFoundException:
+        pass
+
 
     try:
         x, y = pyautogui.locateCenterOnScreen(path+'date4.PNG', grayscale=True, confidence=0.8,
@@ -434,6 +440,6 @@ while requestnum < requests:
 
     # open outlook
     open_outlook()
-    mailmoveto()
+    mailmovetodone()
 
     print("Выполнен запрос № -", requestnum)
