@@ -390,38 +390,9 @@ while requestnum < requests:
     except pyautogui.ImageNotFoundException:
         pass
 
-    try:
-        sleep(1)
-        x, y = pyautogui.locateCenterOnScreen(path+'date2023.PNG', grayscale=True, confidence=0.9,
-                                              region=(250, 100, 1269, 350))
-        pyautogui.doubleClick(x, y)
-        sleep(1)
-        c, d = pyautogui.locateCenterOnScreen(path+'copy.PNG', confidence=0.7, region=(250, 100, 1269, 430))
-        pyautogui.click(c, d)
-        pyautogui.doubleClick(1637, 522)
-        sleep(1)
-        pyautogui.rightClick(1637, 522)
-        pyautogui.click(1580, 660)
-    except pyautogui.ImageNotFoundException:
-        pass
 
     try:
-        x, y = pyautogui.locateCenterOnScreen(path+'date3.PNG', grayscale=True, confidence=0.9,
-                                              region=(250, 100, 1269, 350))
-        sleep(1)
-        pyautogui.doubleClick(x, y)
-        sleep(2)
-        c, d = pyautogui.locateCenterOnScreen(path+'copy.PNG', confidence=0.7, region=(250, 100, 1269, 430))
-        pyautogui.click(c, d)
-        pyautogui.doubleClick(1637, 522)
-        sleep(1)
-        pyautogui.rightClick(1637, 522)
-        pyautogui.click(1580, 660)
-    except pyautogui.ImageNotFoundException:
-        pass
-
-    try:
-        x, y = pyautogui.locateCenterOnScreen(path+'date4.PNG', grayscale=True, confidence=0.9,
+        x, y = pyautogui.locateCenterOnScreen(path+'date4.PNG', grayscale=True, confidence=0.8,
                                               region=(250, 100, 1269, 350))
         sleep(1)
         pyautogui.doubleClick(x, y)
@@ -442,8 +413,8 @@ while requestnum < requests:
     find_click_exact(pngname)
 
     # open oneNote
-
-    pyautogui.click(179, 1056)
+    pngname = 'onenote'
+    find_click_exact(pngname)
     pyautogui.tripleClick(596, 264)
     pyautogui.rightClick()
     pyautogui.click(646, 302)
