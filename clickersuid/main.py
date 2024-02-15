@@ -4,7 +4,7 @@ import pyautogui
 
 # Указание количества запросов
 requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 0.8
+pyautogui.PAUSE = 0.4
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
@@ -30,7 +30,6 @@ def find_img(pngname):
             break
         else:
             if r != None:
-                pyautogui.click(r)
                 return r
             else:
                 continue
@@ -43,7 +42,50 @@ def find_click(pngname):
     while r is None:
         count -= 1
         try:
-            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.8)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.click(r)
+                return r
+            else:
+                continue
+
+
+def find_click_kind(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.7)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.click(r)
+                return r
+            else:
+                continue
+
+def find_click_exact(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.99)
         except pyautogui.ImageNotFoundException:
             pass
         if count == 0:
@@ -121,9 +163,6 @@ def open_sudir():
     except pyautogui.ImageNotFoundException:
         pass
 
-def copymail():
-    n, m = pyautogui.locateCenterOnScreen(path + 'copymail.PNG', confidence=0.95)
-    pyautogui.click(n, m)
 
 def mailmoveto():
     n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
@@ -179,9 +218,8 @@ while requestnum < requests:
 
     # open browser
     open_browser()
-    #opensuid
-    open_suid()
     pngname = 'requestsuid'
+    find_click(pngname)
     find_click(pngname)
     # Ждем загр стр запроса
     pngname = 'emptyslot'
@@ -198,16 +236,16 @@ while requestnum < requests:
 
     # проверка жизни Выбор пользователей
     pngname = 'userchoose'
-    find_click(pngname)
+    find_img(pngname)
 
     # Выбрать пользователя и нажать далее
 
 
     # если пользователь не найден пробуем по УЗ
     try:
-        pngname = 'nodata'
-        find_img(pngname)
-        # open outlook copy user account
+        sleep(2)
+        x, y = pyautogui.locateCenterOnScreen(path + 'nodata.PNG', confidence=0.95)
+
         open_outlook()
 
         x, y = pyautogui.locateCenterOnScreen(path+'useraccount.PNG', confidence=0.95)
@@ -245,12 +283,11 @@ while requestnum < requests:
 
     # ищем куда нажать галочку
     try:
-        ax, ay = pyautogui.locateCenterOnScreen(path+'checkbox1.PNG', grayscale=True, confidence=0.9)
-        pyautogui.click(ax, ay)
+        pngname = 'checkbox1'
+        find_click(pngname)
 
-        # next bx by
-        bx, by = pyautogui.locateCenterOnScreen(path+'next.PNG', grayscale=True, confidence=0.9)
-        pyautogui.click(bx, by)
+        pngname = 'next'
+        find_click_exact(pngname)
     except:
         pyautogui.locateCenterOnScreen(path+'nodata.PNG', grayscale=True, confidence=0.9)
         print("Пользователь номер -", requestnum, "не найден");
@@ -264,68 +301,67 @@ while requestnum < requests:
         continue
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
-    sleep(5)
     try:
-        n, m = pyautogui.locateCenterOnScreen(path + 'circlecheckbox.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        bx, by = pyautogui.locateCenterOnScreen(path + 'next.PNG', grayscale=True, confidence=0.9)
-        pyautogui.click(bx, by)
-        sleep(2)
+        pngname = 'circlecheckbox'
+        find_click(pngname)
+
+        pngname = 'next'
+        find_click_exact(pngname)
     except:
         pass
 
     # проверка жизни справки
-    n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
+    pngname = 'ident'
+    find_img(pngname)
 
     # Выбор инф ресурса
-    pyautogui.doubleClick(279, 455)
-    sleep(4)
-    pyautogui.click(911, 502)
-    pyautogui.moveTo(911, 520, 0.2)
-    pyautogui.scroll(20000)
-    pyautogui.click()
-    pyautogui.click(151, 503)
+    pngname = 'another'
+    find_click(pngname)
 
-    # проверка жизни Выбор доступа и перезапуск если не прогрузилась стр запроса
-    n, m = pyautogui.locateCenterOnScreen(path+'dostupchoose.PNG', confidence=0.95)
-    try:
-        n, m = pyautogui.locateCenterOnScreen(path+'other.PNG', confidence=0.95)
-    except pyautogui.ImageNotFoundException:
-        continue
+    pngname = 'company'
+    find_click_kind(pngname)
+    pngname = 'scroll'
+    find_click(pngname)
+
+    pyautogui.scroll(20000)
+    pngname = 'emptyscroll'
+    find_click_kind(pngname)
+
+    pngname = 'dostupchoose'
+    find_img(pngname)
 
     # Вставить имя ресурса
-    pyautogui.rightClick(154, 499)
-    pyautogui.click(203, 647)
-    sleep(1)
+    pngname = 'nameres'
+    find_rightclick(pngname)
+    pngname = 'paste'
+    find_click(pngname)
 
     # выбор типа ресурса
-    pyautogui.click(1385, 506)
-    pyautogui.moveTo(1351, 523, 0.1)
+    pngname = 'typeres'
+    find_click_exact(pngname)
+    pngname = 'scroll'
+    find_click(pngname)
     pyautogui.scroll(2000)
     pyautogui.scroll(-300)
-    sleep(1)
-    n, m = pyautogui.locateCenterOnScreen(path+'infsys.PNG', grayscale=True, confidence=0.9)
+    pngname = 'infsys'
+    find_click_exact(pngname)
 
-    pyautogui.click(n, m)
     # search поиск нажать в инф ресурсах
-    pyautogui.click(54, 563)
-    # ждем загрузки ресурса
-    sleep(5)
-
-    # проверка жизни
-    n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
+    pngname = 'find'
+    find_click(pngname)
 
     # choose выбираем
-    sleep(2)
-    pyautogui.click(87, 629)
-    sleep(1)
+    pngname = 'checkbox3'
+    find_click(pngname)
+
     # next далее
-    pyautogui.click(491, 368)
-    sleep(1)
+    pngname = 'next'
+    find_click_exact(pngname)
 
     # логика поиска крайнего срока
-    pyautogui.click(259, 268)
-    sleep(1)
+    pngname = 'chooseuser'
+    find_click_kind(pngname)
+
 
     # проверка жизни выбор срока действия
     try:
@@ -342,16 +378,18 @@ while requestnum < requests:
         continue
 
     # поиск крестика
+    pngname = 'cross'
+    find_click_kind(pngname)
+
+    # ищем 2023 2024 год
 
     try:
         sleep(1)
-        across, bcross = pyautogui.locateCenterOnScreen(path+'cross.PNG', confidence=0.7, region=(0, 0, 1269, 430))
-        across += 50
-        pyautogui.click(across, bcross)
+        pyautogui.locateCenterOnScreen(path+'inf.PNG', region=(250, 100, 1269, 350))
+        pyautogui.click(1900, 368)
     except pyautogui.ImageNotFoundException:
         pass
 
-    # ищем 2023 2024 год
     try:
         sleep(1)
         x, y = pyautogui.locateCenterOnScreen(path+'date2023.PNG', grayscale=True, confidence=0.9,
@@ -397,16 +435,11 @@ while requestnum < requests:
     except pyautogui.ImageNotFoundException:
         pass
 
-    try:
-        sleep(1)
-        pyautogui.locateCenterOnScreen(path+'inf.PNG', region=(250, 100, 1269, 350))
-        pyautogui.click(1900, 368)
-        pyautogui.click(491, 368)
-    except pyautogui.ImageNotFoundException:
-        pass
+
 
     # next
-    pyautogui.doubleClick(491, 368)
+    pngname = 'next'
+    find_click_exact(pngname)
 
     # open oneNote
 
