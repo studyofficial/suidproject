@@ -307,18 +307,20 @@ while requestnum < requests:
         continue
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
+
+
+    # проверка жизни справки
+    pngname = 'ident'
+    find_img(pngname)
+
     try:
-        sleep(1.5)
+        sleep(2.5)
         n, m = pyautogui.locateCenterOnScreen(path + 'circlecheckbox.PNG', confidence=0.95)
         pyautogui.click(n, m)
         n, m = pyautogui.locateCenterOnScreen(path + 'next.PNG', confidence=0.95)
         pyautogui.click(n, m)
     except:
         pass
-
-    # проверка жизни справки
-    pngname = 'ident'
-    find_img(pngname)
 
     # Выбор инф ресурса
     pngname = 'another'
