@@ -168,10 +168,16 @@ def open_sudir():
 
 
 def mailmovetodone():
-    n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
-    pyautogui.click(n, m)
-    n, m = pyautogui.locateCenterOnScreen(path+'donerequests.PNG', confidence=0.95)
-    pyautogui.click(n, m)
+    pngname = 'moveto'
+    find_click(pngname)
+    pngname = 'donerequests'
+    find_click(pngname)
+
+def mailmovetoopublic():
+    pngname = 'moveto'
+    find_click(pngname)
+    pngname = 'opublic'
+    find_click(pngname)
 
 
 def copyusername():
@@ -183,6 +189,7 @@ def copyusername():
     pyautogui.click(n, m)
 
 def copyrolename():
+    sleep(0.5)
     n, m = pyautogui.locateCenterOnScreen(path + 'rolename.PNG', confidence=0.7)
     m += 160
     n += 50
@@ -296,11 +303,7 @@ while requestnum < requests:
         print("Пользователь номер -", requestnum, "не найден");
         # open outlook
         open_outlook()
-        n, m = pyautogui.locateCenterOnScreen(path+'moveto.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-        n, m = pyautogui.locateCenterOnScreen(path+'manualrequest.PNG', confidence=0.95)
-        pyautogui.click(n, m)
-
+        mailmovetoopublic()
         continue
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
@@ -359,7 +362,18 @@ while requestnum < requests:
 
     # choose выбираем
     pngname = 'checkbox3'
-    find_click(pngname)
+    try:
+        find_click(pngname)
+    except:
+        pyautogui.locateCenterOnScreen(path + 'nodata.PNG', grayscale=True, confidence=0.9)
+        print("Пользователь номер -", requestnum, "не найден");
+        # open outlook
+        open_outlook()
+        n, m = pyautogui.locateCenterOnScreen(path + 'moveto.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        n, m = pyautogui.locateCenterOnScreen(path + 'opublic.PNG', confidence=0.95)
+        pyautogui.click(n, m)
+        continue
 
     # next далее
     pngname = 'next'
@@ -386,9 +400,13 @@ while requestnum < requests:
         continue
 
     # поиск крестика
-    pngname = 'cross'
-    find_click_kind(pngname)
-
+    try:
+        sleep(1)
+        x, y = pyautogui.locateCenterOnScreen(path + 'cross.PNG', confidence=0.9)
+        x += 50
+        pyautogui.click(x, y)
+    except pyautogui.ImageNotFoundException:
+        pass
     # ищем 2023 2024 год
 
     try:
