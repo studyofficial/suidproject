@@ -39,7 +39,7 @@ def find_click(pngname):
     # Ожидаем появление элемента
     sleep(0.5)
     r = None
-    count = 200
+    count = 300
     while r is None:
         count -= 1
         try:
@@ -433,34 +433,33 @@ while requestnum < requests:
         sleep(2)
         c, d = pyautogui.locateCenterOnScreen(path+'copy.PNG', confidence=0.7, region=(250, 100, 1269, 430))
         pyautogui.click(c, d)
-        pyautogui.doubleClick(1637, 522)
-        sleep(1)
-        pyautogui.rightClick(1637, 522)
-        pyautogui.click(1580, 660)
+        pngname = 'lastday'
+        find_tripleclick_rightclick(pngname)
+        pngname = 'paste'
+        find_click(pngname)
     except pyautogui.ImageNotFoundException:
         pass
 
 
 
-    # next
     pngname = 'next'
     find_click_exact(pngname)
 
     # open oneNote
     pngname = 'onenote'
     find_click_exact(pngname)
-    pyautogui.tripleClick(596, 264)
-    pyautogui.rightClick()
-    pyautogui.click(646, 302)
-
+    pngname = 'obosnov'
+    find_tripleclick_rightclick(pngname)
+    pngname = 'copyonenote'
+    find_click(pngname)
     # open browser
     open_browser()
     # paste some words
-    pyautogui.rightClick(334, 538)
-    pyautogui.click(369, 682)
+    pngname = 'obosnovfield'
+    find_rightclick(pngname)
+    pngname = 'paste'
+    find_click(pngname)
 
-    # проверка жизни Обоснование
-    n, m = pyautogui.locateCenterOnScreen(path+'obosnovanie.PNG', confidence=0.95)
 
     # нажать кнопку отправить запрос
     pngname = 'end'
