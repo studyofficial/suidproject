@@ -447,7 +447,7 @@ while requestnum < requests:
 
     # open oneNote
     pngname = 'onenote'
-    find_click_exact(pngname)
+    find_click(pngname)
     pngname = 'obosnov'
     find_tripleclick_rightclick(pngname)
     pngname = 'copyonenote'
