@@ -322,15 +322,13 @@ while requestnum < requests:
     except:
         pass
 
-    # Выбор инф ресурса
+    # Выбор инф ресурса (компания)
     pngname = 'another'
     find_click(pngname)
-
     pngname = 'company'
     find_click_kind(pngname)
     pngname = 'scroll'
     find_click(pngname)
-
     pyautogui.scroll(20000)
     pngname = 'emptyscroll'
     find_click_kind(pngname)
@@ -358,13 +356,17 @@ while requestnum < requests:
     pngname = 'infsys'
     find_click_exact(pngname)
 
+
     # search поиск нажать в инф ресурсах
     pngname = 'find'
     find_click(pngname)
 
-    # choose выбираем
-    pngname = 'checkbox3'
+    # choose выбираем по платформе PaaS
+
     try:
+        pngname = 'dppaas'
+        find_click(pngname)
+        pngname = 'checkbox3'
         find_click(pngname)
     except:
         pyautogui.locateCenterOnScreen(path + 'nodata.PNG', grayscale=True, confidence=0.9)
@@ -376,6 +378,7 @@ while requestnum < requests:
         n, m = pyautogui.locateCenterOnScreen(path + 'opublic.PNG', confidence=0.95)
         pyautogui.click(n, m)
         continue
+
 
     # next далее
     pngname = 'next'

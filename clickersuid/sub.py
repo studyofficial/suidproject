@@ -222,19 +222,19 @@ while requestnum < requests:
 
     # open browser
     open_browser()
-    sleep(3)
     request_suid()
-    sleep(3)
-    pyautogui.click(554, 311)
-    sleep(3)
+    pngname = 'withdraw'
+    find_click(pngname)
+    sleep(2)
+    pngname = 'emptyslot'
+    find_rightclick(pngname)
 
 
-    pyautogui.click(207, 455)
-    # paste
-    sleep(3)
-    pyautogui.rightClick(207, 455)
-    pyautogui.click(239, 605)
-    pyautogui.click(40, 482)
+    pngname = 'paste'
+    find_click(pngname)
+
+    pngname = 'find'
+    find_click(pngname)
     # загрузка польз
 
     open_outlook()
@@ -270,14 +270,17 @@ while requestnum < requests:
     # Выбор инф ресурса
     sleep(3)
     # Вставить имя ресурса
-    pyautogui.rightClick(339, 456)
-    pyautogui.click(371, 605)
+    pngname = 'dostupname'
+    find_rightclick(pngname)
+    pngname = 'paste'
+    find_click(pngname)
     sleep(1)
 
 
     # search поиск нажать в инф ресурсах
-    pyautogui.click(41, 505)
-    sleep(4)
+    pngname = 'find'
+    find_click(pngname)
+    sleep(2)
 
     pngname = 'checkbox2'
     find_click(pngname)
@@ -292,26 +295,25 @@ while requestnum < requests:
 
 
     # open oneNote
-
-    pyautogui.click(179, 1056)
-    pyautogui.position()
-    pyautogui.tripleClick(645, 686)
-    pyautogui.rightClick()
-    pyautogui.click(691, 725)
-
+    pngname = 'onenote'
+    find_click(pngname)
+    pngname = 'obosnovwithdraw'
+    find_tripleclick_rightclick(pngname)
+    pngname = 'copyonenote'
+    find_click(pngname)
     # open browser
 
     open_browser()
     # paste some words
-    pyautogui.rightClick(334, 538)
-    pyautogui.click(369, 682)
+    pngname = 'obosnovfield'
+    find_rightclick(pngname)
+    pngname = 'paste'
+    find_click(pngname)
 
     # Завершить процесс для прода - нажать кнопку отправить запрос
     pngname = 'end'
     find_click_exact(pngname)
 
-    pngname = 'end2'
-    find_click_exact(pngname)
     # Переместить запрос в обработанные
 
     # open outlook
