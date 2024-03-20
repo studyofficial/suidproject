@@ -88,6 +88,27 @@ def find_click_exact(pngname):
     while r is None:
         count -= 1
         try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            break
+        else:
+            if r != None:
+                pyautogui.click(r)
+                return r
+            else:
+                continue
+
+def find_click_exactly(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 200
+    while r is None:
+        count -= 1
+        try:
             r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.99)
         except pyautogui.ImageNotFoundException:
             pass
@@ -344,7 +365,7 @@ while requestnum < requests:
 
     # выбор типа ресурса
     pngname = 'typeres'
-    find_click_exact(pngname)
+    find_click_exactly(pngname)
     try:
         n, m = pyautogui.locateCenterOnScreen(path+'scroll.PNG', confidence=0.95)
         pyautogui.click(n, m)
