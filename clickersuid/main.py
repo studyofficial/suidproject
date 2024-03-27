@@ -3,12 +3,13 @@ from time import sleep
 import pyautogui, sys
 
 # Указание количества запросов
-requests = int(input("Количество запросов - "))
+# requests = int(input("Количество запросов - "))
+requests = 100
 pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
-path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
+path = r'C:\Software\png/'
 # номер запроса
 requestnum = 0
 
@@ -236,7 +237,7 @@ while requestnum < requests:
     # Выводим время обработки запросов
     reqleft = requests - requestnum
 
-    print("Осталось запросов -", reqleft, ". Это займет примерно ", reqleft, "мин.")
+    print("Выполняю запрос № -", requestnum)
 
     requestnum += 1
 
@@ -487,14 +488,12 @@ while requestnum < requests:
 
     # нажать кнопку отправить запрос
     pngname = 'end'
-    find_click_exact(pngname)
+    find_click_exactly(pngname)
 
     pngname = 'end2'
-    find_click_exact(pngname)
+    find_click_exactly(pngname)
     # Переместить запрос в обработанные
 
     # open outlook
     open_outlook()
     mailmovetodone()
-
-    print("Выполнен запрос № -", requestnum)

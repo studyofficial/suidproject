@@ -3,8 +3,8 @@ from time import sleep
 import pyautogui, sys
 
 # Указание количества запросов
-requests = int(input("Количество запросов - "))
-pyautogui.PAUSE = 0.9
+requests = 100
+pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = True
 path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 
@@ -53,6 +53,27 @@ def find_click(pngname):
             else:
                 continue
 
+def find_click_fast(pngname):
+    # Ожидаем появление элемента
+    sleep(0.5)
+    r = None
+    count = 50
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            sys.exit()
+            break
+        else:
+            if r != None:
+                pyautogui.click(r)
+                return r
+            else:
+                continue
 
 def find_click_kind(pngname):
     # Ожидаем появление элемента
@@ -290,6 +311,15 @@ while requestnum < requests:
     # конец проверки
 
     # next далее
+    pngname = 'next'
+    find_click(pngname)
+
+    try:
+        pngname = 'checkbox2'
+        find_click_fast(pngname)
+    except:
+            pass
+
     pngname = 'next'
     find_click(pngname)
 
