@@ -230,7 +230,7 @@ open_sudir()
 
 
 while requestnum < requests:
-
+    requestnum += 1
     # Обнуляем значения
     n, m, x, y, across, bcross, ax, ay, bx, by, xset, yset, xoutlook, youtlook = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
