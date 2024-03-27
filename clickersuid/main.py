@@ -239,7 +239,6 @@ while requestnum < requests:
 
     print("Выполняю запрос № -", requestnum)
 
-    requestnum += 1
 
     open_browser()
     open_suid()
