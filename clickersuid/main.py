@@ -9,7 +9,7 @@ pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
-path = r'C:\Software\png/'
+path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 # номер запроса
 requestnum = 0
 
