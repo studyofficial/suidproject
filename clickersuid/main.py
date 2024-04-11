@@ -271,7 +271,7 @@ while requestnum < requests:
 
     # если пользователь не найден пробуем по УЗ
     try:
-        x, y = pyautogui.locateCenterOnScreen(path + 'nodata.PNG', confidence=0.95)
+        x, y = pyautogui.locateCenterOnScreen(path + 'nodata.PNG', confidence=0.7)
         open_outlook()
         x, y = pyautogui.locateCenterOnScreen(path+'useraccount.PNG', confidence=0.95)
         y += 60
