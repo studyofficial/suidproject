@@ -4,7 +4,7 @@ import pyautogui, sys
 
 # Указание количества запросов
 requests = 100
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = 1.5
 pyautogui.FAILSAFE = True
 path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
 

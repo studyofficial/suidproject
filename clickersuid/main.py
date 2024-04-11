@@ -5,7 +5,7 @@ import pyautogui, sys
 # Указание количества запросов
 # requests = int(input("Количество запросов - "))
 requests = 100
-pyautogui.PAUSE = 0.5
+pyautogui.PAUSE = 0.8
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
@@ -265,20 +265,14 @@ while requestnum < requests:
 
     open_browser()
 
-    # проверка жизни Выбор пользователей
-    pngname = 'userchoose'
-    find_img(pngname)
 
     # Выбрать пользователя и нажать далее
 
 
     # если пользователь не найден пробуем по УЗ
     try:
-        sleep(1)
         x, y = pyautogui.locateCenterOnScreen(path + 'nodata.PNG', confidence=0.95)
-
         open_outlook()
-
         x, y = pyautogui.locateCenterOnScreen(path+'useraccount.PNG', confidence=0.95)
         y += 60
         pyautogui.tripleClick(x, y)
@@ -311,6 +305,10 @@ while requestnum < requests:
         open_browser()
     except:
         pass
+
+    # проверка жизни Выбор пользователей
+    pngname = 'userchoose'
+    find_img(pngname)
 
     # ищем куда нажать галочку
     try:
