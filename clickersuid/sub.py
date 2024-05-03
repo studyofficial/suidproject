@@ -306,6 +306,17 @@ while requestnum < requests:
     pngname = 'checkbox2'
     find_click(pngname)
 
+    try:
+        pyautogui.locateCenterOnScreen(path + 'nodata2.PNG', grayscale=True, confidence=0.9)
+        print("Пользователь номер -", requestnum, "не найден");
+        # open outlook
+        open_outlook()
+        mailmovetomanual()
+        requestnum += 1
+    except:
+        pass
+
+
     # проверка жизни
     n, m = pyautogui.locateCenterOnScreen(path+'ident.PNG', grayscale=True, confidence=0.9)
     # конец проверки
