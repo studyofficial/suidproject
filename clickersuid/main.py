@@ -19,7 +19,7 @@ pngname = "Name"
 def find_img(pngname):
     sleep(0.5)
     r = None
-    count = 200
+    count = 50
     while r is None:
         count -= 1
         try:
