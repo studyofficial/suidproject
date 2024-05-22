@@ -4,9 +4,9 @@ import pyautogui, sys
 
 # Указание количества запросов
 requests = 100
-pyautogui.PAUSE = 1.5
+pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = True
-path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
+path = r'C:\Users\008an\PycharmProjects\suidproject\png/'
 
 requestnum = 0
 
@@ -169,7 +169,7 @@ def open_outlook():
     sleep(0.2)
 
 def open_browser():
-    x, y = pyautogui.locateCenterOnScreen(path + 'yndx.PNG', confidence=0.8)
+    x, y = pyautogui.locateCenterOnScreen(path + 'yndx.PNG', confidence=0.7)
     pyautogui.click(x, y)
 
 def open_suid():
@@ -224,7 +224,6 @@ def request_suid():
 
 
 
-open_sudir()
 
 pyautogui.click(1917,1055)
 

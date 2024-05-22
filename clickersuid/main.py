@@ -5,11 +5,11 @@ import pyautogui, sys
 # Указание количества запросов
 # requests = int(input("Количество запросов - "))
 requests = 100
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = 0.6
 pyautogui.FAILSAFE = True
 
 # путь к файлам png
-path = r'C:\Users\Andy\PycharmProjects\suidproject\png/'
+path = r'C:\Users\008an\PycharmProjects\suidproject\png/'
 # номер запроса
 requestnum = 0
 
@@ -20,6 +20,26 @@ def find_img(pngname):
     sleep(0.5)
     r = None
     count = 200
+    while r is None:
+        count -= 1
+        try:
+            r = pyautogui.locateCenterOnScreen(path + pngname + '.PNG', confidence=0.9)
+        except pyautogui.ImageNotFoundException:
+            pass
+        if count == 0:
+            print(pngname + 'не найден')
+            sys.exit()
+            break
+        else:
+            if r != None:
+                return r
+            else:
+                continue
+
+def find_img_fast(pngname):
+    sleep(0.5)
+    r = None
+    count = 10
     while r is None:
         count -= 1
         try:
@@ -303,27 +323,36 @@ while requestnum < requests:
         find_click(pngname)
 
         open_browser()
+        pngname = 'podryad'
+        find_click(pngname)
+        pngname = 'checkboxpodryad'
+        find_click_exact(pngname)
+        pngname = 'next'
+        find_click_exact(pngname)
     except:
         pass
 
-    # проверка жизни Выбор пользователей
-    pngname = 'userchoose'
-    find_img(pngname)
+    try:
+        pyautogui.locateCenterOnScreen(path + 'nodata.PNG', grayscale=True, confidence=0.9)
+        print("Пользователь номер -", requestnum, "не найден");
+        # open outlook
+        open_outlook()
+        mailmovetoopublic()
+        continue
+    except:
+        pass
 
     # ищем куда нажать галочку
     try:
+        pngname = 'userchoose'
+        find_img_fast(pngname)
         pngname = 'checkbox1'
         find_click(pngname)
 
         pngname = 'next'
         find_click_exact(pngname)
     except:
-        pyautogui.locateCenterOnScreen(path+'nodata.PNG', grayscale=True, confidence=0.9)
-        print("Пользователь номер -", requestnum, "не найден");
-        # open outlook
-        open_outlook()
-        mailmovetoopublic()
-        continue
+        pass
 
     # multiple roles Если несколько ролей, выбрать одну (ВЫБОР ДОЛЖНОСТЕЙ)
 
