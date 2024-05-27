@@ -522,4 +522,14 @@ while requestnum < requests:
 
     # open outlook
     open_outlook()
+
+    #send ticket
+    pngname = 'fastaction'
+    find_click(pngname)
+
+    pngname = 'ksuitzayavki'
+    find_click(pngname)
+    pngname = 'sendaction'
+    find_click(pngname)
+
     mailmovetodone()
