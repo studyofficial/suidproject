@@ -531,5 +531,3 @@ while requestnum < requests:
     find_click(pngname)
     pngname = 'sendaction'
     find_click(pngname)
-
-    mailmovetodone()
